@@ -1,8 +1,6 @@
 import sqlite3
 from webbot import Browser
 
-
-
 def login_instagram(username, password):
     web = Browser()
     web.maximize_window()
