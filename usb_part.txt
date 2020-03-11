@@ -10,4 +10,3 @@ format fs=ntfs quick label="HyperPassStorage"
 assign letter=K
 list vol
 exit
-
