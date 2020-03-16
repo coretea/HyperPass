@@ -23,11 +23,5 @@ def isPluggedIn(driveLetter):
     if os.system("cd " +driveLetter +":") == 0: return True
     else: return False
 
-def main():
-    if not (isPluggedIn("R") and isPluggedIn("S")):
-        exit()
-    else:
-        print("Connected")
 
-if __name__ == "__main__":
-    main()
+
