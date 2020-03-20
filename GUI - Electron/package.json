@@ -1,0 +1,19 @@
+{
+  "name": "hyper-pass",
+  "version": "0.1.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "description": "test #1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Omerkv/karmiel-101-hyperpass.git"
+  },
+  "author": "Omer Kvartler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Omerkv/karmiel-101-hyperpass/issues"
+  },
+  "homepage": "https://gitlab.com/Omerkv/karmiel-101-hyperpass#readme"
+}
