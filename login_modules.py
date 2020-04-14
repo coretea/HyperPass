@@ -1,7 +1,6 @@
 import sqlite3
 from webbot import Browser
 from pysqlsimplecipher import decryptor, encryptor
-
 con = sqlite3.connect('hyperpass_db.db')
 cur = con.cursor()
 
