@@ -1,13 +1,14 @@
 import sqlite3
 from webbot import Browser
 from pysqlsimplecipher import decryptor, encryptor
+from selenium.webdriver.common.keys import Keys
+
+
 con = sqlite3.connect('hyperpass_db.db')
 cur = con.cursor()
 
-
-
 def login_spotify(web):
-    web.go_to('https://accounts.spotify.com/en/login')
+    web.execute_script('''window.open("https://accounts.spotify.com/en/login","_blank");''')
     # login to spotify
     cur.execute("SELECT * FROM users WHERE site='Spotify'")
     result = cur.fetchone()
@@ -18,11 +19,10 @@ def login_spotify(web):
     web.click('Log In')
 
 def login_instagram(web):
-    web.go_to('https://www.instagram.com/accounts/login/')
+    web.execute_script('''window.open("https://www.instagram.com/accounts/login/","_blank");''')
     # login to instagram
     cur.execute("SELECT * FROM users WHERE site='Instagram'")
     result = cur.fetchone()
-    print(result)
     username = result[1]
     password = result[2]
     web.type(username, into='Phone number, username, or email', id='username')
@@ -31,8 +31,9 @@ def login_instagram(web):
 
 
 def login_facebook(web):
-    web.go_to('facebook.com')
+    web.execute_script('''window.open("https://www.facebook.com","_blank");''')
     # login to facebook
+    web.switch_to_tab(2)
     cur.execute("SELECT * FROM users WHERE site='Facebook'")
     result = cur.fetchone()
     username = result[1]
