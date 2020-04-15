@@ -1,14 +1,21 @@
 import auth_module
 import login_modules
 import USB_module
+from selenium.webdriver.chrome.options import Options
 
+
+#this is a test module 
 def main():
-    choice = input("Welcome to HyperPass! \n1. login\n2. register")
-    if choice == "1":
-        auth_module.login()
-    if choice == "2":
-        auth_module.register()
-
+    auth_module.login(email='admin@hyperpass.com', password='adminstrator')
+    hashed = auth_module.create_hash()
+    login_modules.reconnect_db()
+#    login_modules.unlock_db(bytearray('default', 'utf-8'))
+    chrome_options = Options()
+    global driver
+    driver = login_modules.Browser()
+    driver.driver.maximize_window()
+    login_modules.login_facebook(driver)
+    login_modules.login_instagram(driver)
 
 
 

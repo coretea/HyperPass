@@ -1,5 +1,10 @@
 import pyrebase
 import getpass
+import hashlib
+import subprocess
+import win32com.shell.shell as shell
+import win32com.client
+
 
 firebaseConfig = {
     "apiKey": "AIzaSyB21L34BC_MdJtEHq5_x_ftiO0PXs9IRAk",
@@ -14,22 +19,30 @@ firebaseConfig = {
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
+database = firebase.database()
 
-
-def register():
-    email = input('Please enter your Email: ')
-    password = input('Please enter you Password: ')
+def register(email, password):
     user = auth.create_user_with_email_and_password(email, password)
     auth.get_account_info(user['idToken'])
-    print("Success!")
+    print("Successfully created user!")
 
 
-def login():
-    email = input('Please enter your Email address: ')
-    password = input('Please enter your password: ')
+def login(email, password):
     auth.sign_in_with_email_and_password(email, password)
-    print("Success!")
+    print("Successfully logged in!")
+
+def create_hash():
+    h = hashlib.new('ripemd160')
+    h.update(get_id().encode('utf-8'))
+    return h.hexdigest()
+
+
+def open_bitlock(password):
+    shell.ShellExecuteEx(lpVerb='runas', lpFile='powershell.exe', lpParameters='/c ' +
+                    '$key = ConvertTo-SecureString "'+password+'" -AsPlainText -Force\n'
+                    'Unlock-BitLocker -MountPoint "S:" -Password $key')
+
+
 
 def get_id():
     return auth.current_user['idToken']
-
