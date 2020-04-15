@@ -21,10 +21,11 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 database = firebase.database()
 
-def register(email, password):
+def register(email, password, key):
     user = auth.create_user_with_email_and_password(email, password)
     auth.get_account_info(user['idToken'])
     print("Successfully created user!")
+    return True
 
 
 def login(email, password):

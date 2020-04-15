@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import *
+import login_modules
+import auth_module
+import USB_module
 
 HEIGHT = 700
 WIDTH = 800
@@ -26,13 +29,13 @@ def add_sites(site_name):
 	username_given.grid(row=1, column=1)
 	password_given.grid(row=2, column=1)
 
-	loginB = Button(root_login, text='Login')  # This makes the login button, which will go to the CheckLogin def.
+	loginB = Button(root_login, text='Login', command=lambda: login_modules.add_site_db(str(site_name), username_given.get(), password_given.get()))  # This makes the login button, which will go to the CheckLogin def.
 	loginB.grid(columnspan=2, sticky=W)
 
-	print(site_name)
-	#write to db - site(site_name)-username(nameEL)-password(pwordEL)
 
 	root_login.mainloop()
+
+
 #-------------------------------the start page function----------------------------------------
 
 def start():
@@ -71,7 +74,6 @@ def Login():
 	root_login.title('Login')  # This makes the window title 'login'
 
 
-
 	nameL = Label(root_login, text='Username: ')  # More labels
 	pwordL = Label(root_login, text='Password: ')  # ^
 	nameL.grid(row=1, sticky=W)
@@ -82,7 +84,8 @@ def Login():
 	nameEL.grid(row=1, column=1)
 	pwordEL.grid(row=2, column=1)
 
-	loginB = Button(root_login, text='Login')  # This makes the login button, which will go to the CheckLogin def.
+	loginB = Button(root_login, text='Login', command=lambda: auth_module.login(nameEL.get(), pwordEL.get()))
+	  # This makes the login button, which will go to the CheckLogin def.
 	loginB.grid(columnspan=2, sticky=W)
 
 	root_login.mainloop()
@@ -112,10 +115,8 @@ def signup():
 	pwordEL.grid(row=2, column=1)
 	keyEL.grid(row=3, column=1)
 
-	loginB = Button(root_signup, text='Signup')
+	loginB = Button(root_signup, text='Signup', command=lambda: auth_module.signup(nameEL.get(), pwordEL.get(), keyEL.get()))
 	loginB.grid(columnspan=2, sticky=W)
-
-	#login process
 
 	root_signup.mainloop()
 #------------------------------------main loop for software--------------------------------------------------

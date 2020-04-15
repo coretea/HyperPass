@@ -45,6 +45,10 @@ def login_facebook(web):
     web.go_back()
     web.click('Sign in')
 
+
+
+
+#---------------db funcs-------------------------
 def reconnect_db():
     con = sqlite3.connect('hyperpass_db.db')
     cur = con.cursor()
@@ -55,3 +59,8 @@ def unlock_db(key):
 
 def lock_db(key):
     encryptor.encrypt_file("hyperpass_db.db", key, "hyperpass_db.db")
+
+def add_site_db(site, username, password):
+    reconnect_db()
+    cur.execute("INSERT INTO users (site, username, password) VALUES (?,?,?)", (site, username, password))
+    con.commit()

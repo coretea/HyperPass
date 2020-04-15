@@ -4,8 +4,9 @@ import USB_module
 from selenium.webdriver.chrome.options import Options
 
 
-#this is a test module 
+#this is a test module
 def main():
+    '''
     auth_module.login(email='admin@hyperpass.com', password='adminstrator')
     hashed = auth_module.create_hash()
     login_modules.reconnect_db()
@@ -16,7 +17,8 @@ def main():
     driver.driver.maximize_window()
     login_modules.login_facebook(driver)
     login_modules.login_instagram(driver)
-
+'''
+    login_modules.add_site_db("Reddit", "Omerkv", "ok021019")
 
 
 
