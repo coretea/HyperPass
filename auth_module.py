@@ -6,8 +6,6 @@ import win32com.shell.shell as shell
 import win32com.client
 
 
-
-
 firebaseConfig = {
     "apiKey": "AIzaSyB21L34BC_MdJtEHq5_x_ftiO0PXs9IRAk",
     "authDomain": "hyperpass-ea397.firebaseapp.com",
@@ -35,7 +33,7 @@ def login(email, password):
 
 def create_hash():
     h = hashlib.new('ripemd160')
-    h.update(get_id())
+    h.update(get_id().encode('utf-8'))
     return h.hexdigest()
 
 
