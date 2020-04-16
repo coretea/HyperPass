@@ -1,0 +1,1 @@
+"C:\Users\Omer Kvartler\AppData\Local\Programs\Python\Python37-32\python.exe" gui.py
