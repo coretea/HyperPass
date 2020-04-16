@@ -6,19 +6,7 @@ from selenium.webdriver.chrome.options import Options
 
 #this is a test module
 def main():
-    '''
-    auth_module.login(email='admin@hyperpass.com', password='adminstrator')
-    hashed = auth_module.create_hash()
-    login_modules.reconnect_db()
-#    login_modules.unlock_db(bytearray('default', 'utf-8'))
-    chrome_options = Options()
-    global driver
-    driver = login_modules.Browser()
-    driver.driver.maximize_window()
-    login_modules.login_facebook(driver)
-    login_modules.login_instagram(driver)
-'''
-    login_modules.add_site_db("Reddit", "Omerkv", "ok021019")
+    login_modules.lock_db(bytearray('Vav54q0wW0bTdf5gktt5Unm16Mg2', 'utf-8'))
 
 
 

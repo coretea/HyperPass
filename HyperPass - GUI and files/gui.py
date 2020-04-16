@@ -7,9 +7,35 @@ import USB_module
 HEIGHT = 700
 WIDTH = 800
 
-def login_all():
-	pass
 
+
+def login_all():
+	login_modules.reconnect_db()
+	sites = login_modules.get_sites()
+	global driver
+	driver = login_modules.Browser()
+	driver.driver.maximize_window()
+	print(sites)
+	i = 0
+	for i in range (0, len(sites)):
+		if 'Instagram' in sites[i]:
+			login_modules.login_instagram(driver)
+		if 'Facebook' in sites[i]:
+			login_modules.login_facebook(driver)
+		if 'Twitter' in sites[i]:
+			login_modules.login_twitter(driver)
+		if 'Reddit' in sites[i]:
+			login_modules.login_reddit(driver)
+		if 'Spotify' in sites[i]:
+			login_modules.login_spotify(driver)
+		if 'GitHub' in sites[i]:
+			login_modules.login_github(driver)
+		if 'LinkedIn' in sites[i]:
+			login_modules.login_linkedIn(driver)
+		if 'Pinterest' in sites[i]:
+			login_modules.login_pinterest(driver)
+
+	login_modules.lock_db(bytearray(user['localId'], 'utf-8'))		
 
 def add_sites(site_name):
 
@@ -40,6 +66,8 @@ def add_sites(site_name):
 
 def start():
 
+	global root_start
+
 	root_start = Tk()  # This now makes a new window.
 	root_start.title('Hello!')
 	canvas = tk.Canvas(root_start, height=HEIGHT, width=WIDTH)
@@ -61,8 +89,14 @@ def start():
 	register_button = Button(root_start, text='Register', bg="white", command=signup)
 	register_button.place(relwidth=0.4, relheight=0.1, relx=0.55, rely=0.6)
 
+
+
 	root_start.mainloop()
 #------------------------------------login function----------------------------------------------
+def login_seq(username, password):
+	auth_module.login(username, password)
+	root_login.destroy()
+	root_start.destroy()
 
 def Login():
 	global nameEL
@@ -84,13 +118,18 @@ def Login():
 	nameEL.grid(row=1, column=1)
 	pwordEL.grid(row=2, column=1)
 
-	loginB = Button(root_login, text='Login', command=lambda: auth_module.login(nameEL.get(), pwordEL.get()))
+	loginB = Button(root_login, text='Login', command=lambda: login_seq(nameEL.get(), pwordEL.get()))
 	  # This makes the login button, which will go to the CheckLogin def.
 	loginB.grid(columnspan=2, sticky=W)
 
 	root_login.mainloop()
 
+
 #-------------------signup function-----------------------------------------------
+def signup_seq(username, password, key):
+	auth_module.login(username, password, key)
+	root_signup.destroy()
+	root_start.destroy()
 
 def signup():
 	global root_signup
@@ -115,10 +154,13 @@ def signup():
 	pwordEL.grid(row=2, column=1)
 	keyEL.grid(row=3, column=1)
 
-	loginB = Button(root_signup, text='Signup', command=lambda: auth_module.signup(nameEL.get(), pwordEL.get(), keyEL.get()))
+	loginB = Button(root_signup, text='Signup', command=lambda: singup_seq(nameEL.get(), pwordEL.get(), keyEL.get()))
 	loginB.grid(columnspan=2, sticky=W)
 
+
+
 	root_signup.mainloop()
+
 #------------------------------------main loop for software--------------------------------------------------
 
 start()
@@ -239,7 +281,7 @@ spotify_button.place(relwidth=0.05, relheight=0.05, relx=0.865, rely=0.55)
 
 #----------------------------------------log in button to all user accounts------------------------
 
-log_in_button_to_all_user_accounts = tk.Button(root, text="Launch The Rocket", font=40, bg="grey9", fg="white")
+log_in_button_to_all_user_accounts = tk.Button(root, text="Launch The Rocket", font=40, bg="grey9", fg="white", command=login_all)
 log_in_button_to_all_user_accounts.place(relwidth=0.4, relheight=0.075, relx=0.3, rely=0.7)
 
 #---------------------------------------adding frames----------------------------------------------
