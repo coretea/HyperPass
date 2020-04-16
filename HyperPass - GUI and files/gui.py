@@ -35,7 +35,7 @@ def login_all():
 		if 'Pinterest' in sites[i]:
 			login_modules.login_pinterest(driver)
 
-	login_modules.lock_db(bytearray(user['localId'], 'utf-8'))		
+	login_modules.lock_db(bytearray(auth_module.get_id(), 'utf-8'))
 
 def add_sites(site_name):
 

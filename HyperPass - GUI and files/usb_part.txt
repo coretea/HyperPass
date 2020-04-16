@@ -1,0 +1,12 @@
+list disk
+select Disk 1
+clean
+create partition primary size=500
+format quick fs=fat32 label="HyperPassEncrypt"
+assign letter=J
+active
+create partition primary
+format fs=ntfs quick label="HyperPassStorage"
+assign letter=K
+list vol
+exit
