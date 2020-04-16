@@ -80,7 +80,7 @@ def start():
 	welcome_frame = tk.Frame(root_start, bg="GREY9", bd=5)
 	welcome_frame.place(relwidth=0.75, relheight=0.1, relx=0.5, rely=0.1, anchor='n')
 
-	welcome_label = tk.Label(welcome_frame, text="Welcome to HyperPass program", bg='grey9', fg='white', font=9)
+	welcome_label = tk.Label(welcome_frame, text="Welcome to HyperPass!", bg='grey9', fg='white', font=9)
 	welcome_label.place(relwidth=0.90, relheight=0.8, relx=0.5, rely=0.1, anchor='n')
 
 	login_button = Button(root_start, text='Login', command=Login)  # This makes the login button, which will go to the CheckLogin def.
@@ -289,7 +289,7 @@ log_in_button_to_all_user_accounts.place(relwidth=0.4, relheight=0.075, relx=0.3
 hello_frame = tk.Frame(root, bg="grey9", bd=5)
 hello_frame.place(relwidth=0.75, relheight=0.1, relx=0.5, rely=0.1, anchor='n')
 
-hello_label = tk.Label(hello_frame, text ="Welcome to HyperPass program", bg='grey9', fg='white', font=9)
+hello_label = tk.Label(hello_frame, text ="Welcome to HyperPass!", bg='grey9', fg='white', font=9)
 hello_label.place(relwidth=0.90, relheight=0.8, relx=0.5, rely=0.1, anchor='n')
 
 '''
